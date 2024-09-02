@@ -1,39 +1,6 @@
 data "google_client_config" "default" {}
 
-resource "google_compute_instance" "vm_instance" {
-  name         = var.instance_name
-  machine_type = var.machine_type
-  zone         = var.zones
 
-  // Tags to receive firewall configurations
-  tags = var.firewall_target_tags
-
-  boot_disk {
-    initialize_params {
-      image = var.disk_image
-      size  = var.disk_size
-    }
-  }
-
-  network_interface {
-    network = var.network
-  }
-}
-
-resource "google_compute_instance_group" "ig_replicated_pov" {
-  name = var.instance_group_name
-
-  instances = [
-    google_compute_instance.vm_instance.id
-  ]
-
-  dynamic "named_port" {
-    for_each = var.named_ports
-    content {
-      name = named_port.value.name
-      port = named_port.value.port
-    }
-  }
 
   zone = var.zones
 }
