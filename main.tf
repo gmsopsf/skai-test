@@ -13,7 +13,7 @@ resource "google_compute_instance" "vm_instance" {
       image = var.disk_image
       size  = var.disk_size
     }
-  }
+  }asdasdasdasd
 
   network_interface {
     network = var.network
