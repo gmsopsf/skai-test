@@ -5,6 +5,8 @@ data "google_client_config" "default" {}
   zone = var.zones
 }
 
+
+asdasdasdasdasd
 resource "google_compute_health_check" "tcp-health-check" {
   name = "tcp-health-check"
 
